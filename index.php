@@ -20,16 +20,26 @@ error_reporting(E_ALL);
             <h2>Opening times</h2>
 
             <?php
-            include __DIR__ . '/BaseController.php';
-            include __DIR__ . '/Model.php';
-            include __DIR__ . '/../View.php';
-            include __DIR__ . '/ShopController.php';
-            include __DIR__ . '/OpeningTimesModel.php';
-            include __DIR__ . '/OpeningTimesView.php';
+            /**
+             * Updated to include_once
+             */
 
-            $controller = new \ShopController();
+            include_once __DIR__ . '/BaseController.php';
+            include_once __DIR__ . '/Model.php';
+            //Fixed incorrect file path.
+            include_once __DIR__ . '/View.php';
+            include_once __DIR__ . '/ShopController.php';
+            include_once __DIR__ . '/OpeningTimesModel.php';
+            include_once __DIR__ . '/OpeningTimesView.php';
+            include_once __DIR__ . '/ItemController.php';
+            include_once __DIR__ . '/ItemsModel.php';
+            include_once __DIR__ . '/ItemsView.php';
+
+            $controller = new Arden\ShopController();
+            $itemsController = new Arden\ItemController();
 
             $openingTimesView = new Arden\OpeningTimesView($controller->getModelData());
+            $itemsView = new Arden\ItemsView($itemsController->getModelData());
 
             echo $openingTimesView->render();
             ?>

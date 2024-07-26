@@ -2,7 +2,8 @@
 
 namespace Arden;
 
-abstract class Modle
+//Fixed typo.
+abstract class Model
 {
     protected $data;
 

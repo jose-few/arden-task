@@ -3,7 +3,7 @@
 //Imported class.
 namespace Arden;
 
-class OpeningTimesModel extends Model
+class ItemsModel extends Model
 {
     public function __construct()
     {
