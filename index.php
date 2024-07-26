@@ -45,7 +45,9 @@ error_reporting(E_ALL);
             ?>
         <div>
             <h2>Top Products</h2>
-            <p>( Coming Soon )</p>
+            <?php
+                echo $itemsView->render();
+            ?>
         </div>
     </body>
 </html>

@@ -20,23 +20,33 @@ class ItemsView extends View
     }
 
     public function render() {
-        // Render opening times
+        // Render items as a table
+
+        echo "<table><thead><tr>";
+
         foreach ($this->data as $key => $val) {
-            if ($key == 'days') {
-                foreach ($val as $day) {
-                    echo '<div>' . $day;
+            $head = ucwords(str_ireplace('_', ' ', $key));
+            echo "<th>$head</th>";
+        }
 
-                    echo ' - ';
+        echo "</tr></thead><tbody>";
 
-                    foreach ($this->data['opening_hours'] as $d => $hours) {
-                        if ($d == $day) {
-                            echo $hours;
+        foreach ($this->data as $key => $val) {
+            if ($key == 'items') {
+                foreach ($val as $item) {
+                    echo "<tr>";
+                    echo '<td>' . $item . '</td>';
+
+                    foreach ($this->data['images'] as $d => $img) {
+                        if ($d == $item) {
+                            echo '<td>' . '<img src="img/'.$img.'" alt="'.$item.'_image" width="100" height="150">' . '</td>';
                         }
                     }
-
-                    echo '</div>';
+                    echo "</tr>";
                 }
             }
         }
+
+        echo "</tbody></table>";
     }
 }

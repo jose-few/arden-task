@@ -8,12 +8,13 @@ class ItemsModel extends Model
     public function __construct()
     {
         $this->data = [
-            'days' => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-            'opening_hours' => [
-                'Mon' => '0900 - 1700',
-                'Tue' => '0900 - 1400',
-                'Wed' => 'Closed',
-                'Fri' => '1000 - 1300',
+            'items' => ['keyboard', 'mouse', 'monitor', 'speakers', 'laptop'],
+            'images' => [
+                'keyboard' => 'keyboard.jpg',
+                'mouse' => 'mouse.jpg',
+                'monitor' => 'monitor.jpg',
+                'speakers' => 'speakers.jpg',
+                'laptop' => 'laptop.jpg'
             ]
         ];
     }
