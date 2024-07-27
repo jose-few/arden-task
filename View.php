@@ -4,7 +4,7 @@ namespace Arden;
 
 abstract class View
 {
-    protected $data;
+    protected ?array $data;
 
     abstract public function setData($data);
 

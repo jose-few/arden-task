@@ -5,21 +5,31 @@ namespace Arden;
 
 class OpeningTimesModel extends Model
 {
+    //Added opening times for Thu
     public function __construct()
     {
-        $this->data = [
-            'days' => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-            'opening_hours' => [
-                'Mon' => '0900 - 1700',
-                'Tue' => '0900 - 1400',
-                'Wed' => 'Closed',
-                'Fri' => '1000 - 1300',
-            ]
-        ];
+        $this->setData();
     }
 
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
+    }
+
+    /**
+     * @return void
+     *
+     * Fetches data from the `times` table.
+     * Added void return type.
+     */
+    public function setData(): void
+    {
+        $DB = new DB('times');
+        $data = $DB->fetch();
+
+        if ($data)
+        {
+            $this->data = $data;
+        }
     }
 }

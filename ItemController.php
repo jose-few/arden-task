@@ -10,7 +10,8 @@ class ItemController extends BaseController
         $this->modelData = $model->getData();
     }
 
-    public function getModelData() {
+    public function getModelData(): ?array
+    {
         return $this->modelData;
     }
 }

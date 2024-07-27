@@ -5,10 +5,12 @@ namespace Arden;
 //Fixed typo.
 abstract class Model
 {
-    protected $data;
+    protected ?array $data;
 
     /**
      * @return array
      */
     abstract public function getData();
+
+
 }

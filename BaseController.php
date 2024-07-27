@@ -4,7 +4,7 @@ namespace Arden;
 
 abstract class BaseController
 {
-    protected $modelData;
+    protected ?array $modelData;
 
     abstract public function getModelData();
 }

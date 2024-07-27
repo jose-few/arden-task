@@ -11,7 +11,9 @@ class OpeningTimesView extends View
         }
     }
 
-    public function setData($data) {
+    //Added void return type.
+    public function setData($data): void
+    {
         $this->data = $data;
     }
 
@@ -19,32 +21,34 @@ class OpeningTimesView extends View
         return $this->data;
     }
 
-    public function render() {
-        // Render opening times as a table
+    /**
+     * @return void
+     *
+     * Renders the table for opening times, added return type of void.
+     */
+    public function render(): void
+    {
+        // Render opening times as a table using database.
 
-        echo "<table><thead><tr>";
+        echo "<table class='w3-table w3-striped w3-bordered w3-centered'>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Times</th>
+                    </tr>
+                </thead>
+            <tbody>";
 
-        foreach ($this->data as $key => $val) {
-            $head = ucwords(str_ireplace('_', ' ', $key));
-            echo "<th>$head</th>";
-        }
-
-        echo "</tr></thead><tbody>";
-
-        foreach ($this->data as $key => $val) {
-            if ($key == 'days') {
-                foreach ($val as $day) {
-                    echo "<tr>";
-                    echo '<td>' . $day . '</td>';
-
-                    foreach ($this->data['opening_hours'] as $d => $hours) {
-                        if ($d == $day) {
-                            echo '<td>' . $hours . '</td>';
-                        }
-                    }
-                    echo "</tr>";
-                }
+        foreach ($this->data as $idx) {
+            echo "<tr>";
+            echo "<td>" . ucfirst($idx['day']) . "</td>";
+            //If there is no times set, say Closed.
+            if (is_null($idx['open_time'])) {
+                echo "<td>Closed</td>";
+            } else {
+                echo "<td>" . $idx['open_time'] . "-" . $idx['close_time'] . "</td>";
             }
+            echo "</tr>";
         }
 
         echo "</tbody></table>";

@@ -11,7 +11,14 @@ class ItemsView extends View
         }
     }
 
-    public function setData($data) {
+    /**
+     * @param $data
+     * @return void
+     *
+     * Added void return type.
+     */
+    public function setData($data): void
+    {
         $this->data = $data;
     }
 
@@ -19,32 +26,37 @@ class ItemsView extends View
         return $this->data;
     }
 
-    public function render() {
+    /**
+     * @return void
+     *
+     * Renders items as a table. Added void return type.
+     * Adds in <img> tags for the image column.
+     */
+    public function render(): void
+    {
         // Render items as a table
 
-        echo "<table><thead><tr>";
+        echo "<table class='w3-table w3-striped w3-bordered w3-centered'><thead><tr>";
 
-        foreach ($this->data as $key => $val) {
+        foreach ($this->data[0] as $key => $val) {
             $head = ucwords(str_ireplace('_', ' ', $key));
             echo "<th>$head</th>";
         }
 
         echo "</tr></thead><tbody>";
 
-        foreach ($this->data as $key => $val) {
-            if ($key == 'items') {
-                foreach ($val as $item) {
-                    echo "<tr>";
-                    echo '<td>' . $item . '</td>';
+        foreach ($this->data as $idx) {
+            echo "<tr>";
 
-                    foreach ($this->data['images'] as $d => $img) {
-                        if ($d == $item) {
-                            echo '<td>' . '<img src="img/'.$img.'" alt="'.$item.'_image" width="100" height="150">' . '</td>';
-                        }
-                    }
-                    echo "</tr>";
+            foreach ($idx as $key => $value) {
+                if ($key == 'image') {
+                    echo "<td><img src='img/$value' alt='$value' height='150' width='100'/></td>";
+                } else {
+                    echo "<td>".ucwords($value)."</td>";
                 }
             }
+
+            echo "</tr>";
         }
 
         echo "</tbody></table>";
