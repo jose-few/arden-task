@@ -26,3 +26,5 @@ respective render methods on the View classes, and uses Foreach loops to cycle t
 5. Added the contact form by creating another View class called FormView.php - this renders the form and uses the 
 ContactSubmit.php file to process the POST data.
 6. Submissions are saved by passing the POST data to a DB.php function, which creates a prepared statement to insert.
+
+## Solution in PHP 8.1
